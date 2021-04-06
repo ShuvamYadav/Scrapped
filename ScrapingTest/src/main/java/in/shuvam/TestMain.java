@@ -19,9 +19,10 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class TestMain {
 	public static void main(String args[]) {
+		Sentiment obj=new Sentiment();
 		String year = "2020";
-		String month = "Mar";
-		int date = 23, rowid = 0;
+		String month = "Jan";
+		int date = 13, rowid = 0;
 		boolean flag = true;
 		List<WebElement> dates;
 		System.setProperty("webdriver.chrome.driver", "C:\\selenium-java-3.141.59\\chromedriver.exe");
@@ -66,8 +67,10 @@ public class TestMain {
 			Row row= sheet.createRow(rowid++);
 			row.createCell(0).setCellValue(list.get(i).getText().toString());
 			row.createCell(1).setCellValue(dates.get(i).getAttribute("data-time").toString());
+			row.createCell(2).setCellValue(obj.senti(list.get(i).getText().toString()));
 			sheet.autoSizeColumn(0);
 			sheet.autoSizeColumn(1);
+			sheet.autoSizeColumn(2);
 		}
 		try {
 			FileOutputStream out = new FileOutputStream(new File("D:/Finance.xlsx"));
