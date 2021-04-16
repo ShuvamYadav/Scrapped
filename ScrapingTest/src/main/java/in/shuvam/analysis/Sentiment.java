@@ -1,4 +1,4 @@
-package in.test;
+package in.shuvam.analysis;
 
 import java.util.Properties;
 
