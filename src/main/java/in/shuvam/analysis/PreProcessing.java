@@ -3,7 +3,7 @@ package in.shuvam.analysis;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,7 +13,8 @@ import com.google.common.io.Files;
 
 public class PreProcessing {
 	List<String> stopwords;
-
+	List<String> allWords;
+	String st="";
 	public PreProcessing() {
 		File file = new File("C:\\Users\\Shuvam\\Downloads\\stopwords.txt");
 		 stopwords = Collections.emptyList();
@@ -24,12 +25,15 @@ public class PreProcessing {
 		}
 	}
 
-	public String whenRemoveStopwordsUsingRemoveAll_thenSuccess(String original) {
-
-		ArrayList<String> allWords = Stream.of(original.toLowerCase().split(" "))
-				.collect(Collectors.toCollection(ArrayList<String>::new));
+	public String whenRemoveStopwords(String original) {
+		original=original.replaceAll("[^a-zA-z\\s]","");
+		original = Arrays.stream(original.split("\\s+")).distinct().collect(Collectors.joining(" "));
+		allWords = Stream.of(original.toLowerCase().split(" "))
+				.collect(Collectors.toList());
 		allWords.removeAll(stopwords);
-		return allWords.stream().collect(Collectors.joining(" "));
+		st=allWords.stream().collect(Collectors.joining(" "));
+		allWords.clear();
+		return st;
 	}
 
 }
