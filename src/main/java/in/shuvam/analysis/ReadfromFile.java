@@ -19,7 +19,7 @@ public class ReadfromFile {
 		Sentiment ob = new Sentiment();
 		PreProcessing obj = new PreProcessing();
 		try {
-			FileInputStream inputStream = new FileInputStream(new File("D:\\srinjoy_stanford.xlsx"));
+			FileInputStream inputStream = new FileInputStream(new File("Finance.xlsx"));
 			Workbook workbook = WorkbookFactory.create(inputStream);
 			Sheet sheet = workbook.getSheetAt(0); // creating a Sheet object to retrieve object
 			int rowStart = sheet.getFirstRowNum();
@@ -36,7 +36,7 @@ public class ReadfromFile {
 			}
 			System.out.println(ob.map);
 			inputStream.close();
-			FileOutputStream outputStream = new FileOutputStream(new File("D:\\srinjoy_stanford.xlsx"));
+			FileOutputStream outputStream = new FileOutputStream(new File("Finance.xlsx"));
 			workbook.write(outputStream);
 			outputStream.close();
 		} catch (Exception e) {
